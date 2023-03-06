@@ -2,6 +2,11 @@
 * Projekt: Mobilní aplikace se zdravotnickou tématikou
 * Autor: Vojtěch Voleman
 
+## Popis projektu
+Mobilní aplikace pro zařízení Android. Aplikace umožní uchovávat si lékařské zprávy - vyfotit. Umožní vytažení informací o lékařské zprávě z fotografie.
+Uživatel si bude moct přidávat léky, které musí brát, s možností nastavení frekvence a dávkování. Aplikace upozorní před bráním léku.
+Dále nabídne možnost uchovávat si měřená data (hmotnost, teplota, tlak..), uživatel si bude moct vytvořit vlastní typ měření s vlastními hodnotami (enum) či s dodatečnými fotografiemi.
+
 ## Cílové skupiny
 ### Běžný uživatel
 - je systematický, chodí spíše jen na preventivní prohlídky
