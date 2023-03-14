@@ -19,4 +19,10 @@ V čem se ovšem liší od své konkurence je to, že se zátkou můžete zaží
     - Rychlost a vzdálenost dostřenu závisí na hmotnosti projektilu, opotřepování/natažení pružiny a povětrnostních podmínkách
 7. Vystřelenou zátku již nevkládáme zpět do zásobníku a dle legislativy recyklujeme. Při nedodržení hrozí poškození produktu či újma na zdraví
 
+## Katalogový list
+- Délka: 13cm
+- Výška: 6cm
+- Tloušťka: 3.7cm
+- Hmotnost: 50g
+
 ![Ilustrace](manual.png)
