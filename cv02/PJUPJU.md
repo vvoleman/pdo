@@ -1,13 +1,11 @@
 # Dokumentace pro "PjuPjuGun™"
 
-Cílem dnešní lekce je osvojit si otvírání skleněných lahví s PjuPjuGun™.
-
 ## Koncept
 PjuPjuGun™ je zařízení pro otevírání zátek podtlakovaných skleněných lahví, například lahví lahodného kola loku. Funguje na bázi narušení podtlaku láhve pomocí pákového mechanismu. 
 V čem se ovšem liší od své konkurence je to, že se zátkou můžete zažít spoustu krásných chvil (a výletů na pohotovost).
 
-## Použití
-
+## Tutoriál
+Cílem dnešní lekce je osvojit si otvírání skleněných lahví s PjuPjuGun™.
 0. Před použitím ses ujistěte, že produkt nemá viditelné poškození, a že zásobník je prázdný.
 1. Natáhneme pojistku kohoutku pohybem od hlavně k rukojeti. Úspěšné natažení se projeví cvaknutím a zamezením samovolného uvolnění pružiny
 2. Natažený PjuPjuGun™ přiložíme zhora na láhev tak, aby otvor v dolní části hlavně pasoval na zátku. Pokud je zátka příliš velká či malá, zvolte jiný nástroj než PjuPjuGun™. Mohlo by dojít k poškození produktu či zranění.
@@ -25,4 +23,5 @@ V čem se ovšem liší od své konkurence je to, že se zátkou můžete zaží
 - Hmotnost: 50g
 - Materiál: Plast
 
+## Postup
 ![Ilustrace](manual.png)
