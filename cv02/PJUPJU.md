@@ -24,5 +24,6 @@ V čem se ovšem liší od své konkurence je to, že se zátkou můžete zaží
 - Výška: 6cm
 - Tloušťka: 3.7cm
 - Hmotnost: 50g
+- Materiál: Plast
 
 ![Ilustrace](manual.png)
