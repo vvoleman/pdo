@@ -13,7 +13,7 @@
 #### 2.2.4 Cloudové uložiště
 ### 2.3 Psaní textu
 #### 2.3.1 Popis rozhraní editoru
-#### 2.3.2 Nástroje pro psaní textu
+#### 2.3.2 Nástroje pro formátování textu
 #### 2.3.3 Klávesové zkratky editoru
 #### 2.3.4 Kontrola pravopisu
 #### 2.3.5 Okna textového editoru
