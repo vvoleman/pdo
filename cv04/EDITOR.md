@@ -3,7 +3,7 @@
 ### 1.1 Verze pro Windows
 ### 1.2 Verze pro Linux (Snap)
 ## 2. Práce s editorem
-## 2.1 Popis grafického rozhraní
+### 2.1 Popis grafického rozhraní
 ### 2.2. První spuštění
 #### 2.2.1 Nastavení vzhledu
 #### 2.2.2 Nastavení chování
