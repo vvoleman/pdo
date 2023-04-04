@@ -19,6 +19,9 @@
     - Uzavřený: Cviky přidávají tvůrci aplikace
     - Komunitní: Cviky přidávají uživatelé aplikace
 
+### Způsob vyhledávání
+- Aplikace byli vyhledávány pomocí vyhledávače Google a v aplikaci Google Play.
+
 | Název                                                                                                                 | Hodnocení | Počet hodnocení | Cenová politika                          | Edukativnost | Fitness plán | Katalog cviků        |
 | --------------------------------------------------------------------------------------------------------------------- | --------- | --------------- | ---------------------------------------- | ------------ | ------------ | -------------------- |
 | [BeStronger](https://play.google.com/store/apps/details?id=com.shvagerfm.bestronger&hl=cs&gl=US)                      | 4.5       | 10 219          | Freemium (placená bez reklam)            | 2.5          | ❌           | Uzavřený + komunitní |
