@@ -19,8 +19,9 @@
     - Uzavřený: Cviky přidávají tvůrci aplikace
     - Komunitní: Cviky přidávají uživatelé aplikace
 
-### Způsob vyhledávání
-- Aplikace byli vyhledávány pomocí vyhledávače Google a v aplikaci Google Play.
+### Výběr aplikací
+- Aplikace č. 1 a 2 byly vybrány pomocí vyhledávače Google a v aplikaci Google Play a zastávají tedy aktuálně populární aplikace.
+- Aplikace č. 3 a 4 byly vybrány po předchozím používání
 
 | Název                                                                                                                 | Hodnocení | Počet hodnocení | Cenová politika                          | Edukativnost | Fitness plán | Katalog cviků        |
 | --------------------------------------------------------------------------------------------------------------------- | --------- | --------------- | ---------------------------------------- | ------------ | ------------ | -------------------- |
