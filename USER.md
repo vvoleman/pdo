@@ -62,5 +62,36 @@ Aplikace nabízí možnost přidání neomezeného počtu pacientů, vždy je al
 ### 5.2 Úprava pacienta
 Pro úpravu pacienta rozklikněte nabídku pro více akcí (tři svislé tečky) a vyberte "Upravit". Další postup je totožný s "5.1.2 Přidání pacienta přes správu pacientů".
 ### 5.3 Smazání pacienta
-Pokud se rozhodnete pacienta smazat, můžete tak učit rozkliknutím nabídky pro více akcí (tři svislé tečky) a vybráním "Smazat". Po potvrzení smazání pacienta budou smazány všechny jeho lékařské zprávy, léky a měření. **!! Tato akce je nevratná !!**.
+Pokud se rozhodnete pacienta smazat, můžete tak učit rozkliknutím nabídky pro více akcí (tři svislé tečky) a vybráním "Smazat". Po potvrzení smazání pacienta budou smazány všechny jeho lékařské zprávy, léky a měření. **Tato akce je nevratná**.
+### 5.4 Změna aktuálního pacienta
+Pro změnu aktuálního pacienta klikněte na tlačítko "Přepnout" u vámi zvoleného pacienta. Po přepnutí se tlačítko vypne a u ostatních pacientů se objeví tlačítko "Přepnout". Aktuální pacient je označen zeleným rámečkem.
+## 6. Správa lékařských zpráv
+### 6.1 Seznam lékařských zpráv
+Na stránce "Lékařské zprávy" se zobrazují všechny lékařské zprávy aktuálně vybraného pacienta. Lékařské zprávy jsou odděleny dle aktuálně vybraného seskupování (výchozí seskupování je dle data).
 
+Každá lékařská zpráva je tvořena boxíkem s následujícími informacemi:
+- Datum - datum vytvoření lékařské zprávy
+- Počet příloh - počet příloh přiřazených k lékařské zprávě (pouze pokud > 0)
+- Kategorie problémů - kategorie problémů přiřazená k lékařské zprávě
+- Lékař - lékař, který lékařskou zprávu vytvořil
+- Kód diagnózy - kód diagnózy lékařské zprávy
+
+Barva boxíku lékařské zprávy závisí na kategorii problémů a je upravitelná uživatelem.
+
+### 6.2 Filtrování
+Filtrování zpráv je možné ze stránky "Lékařské zprávy".
+Pro filtrování klikněte na tlačítko v pravém dolním rohu obrazovky. Otevře se okénko s možnostmi filtrování. Pro provedení filtru klikněte na tlačítko "Filtrovat". Pro zrušení filtru klikněte mimo okénko.
+#### 6.2.1 Seskupování
+Možnost "Seskupit dle" určuje, dle čeho se budou lékařské zprávy seskupovat. Možnosti jsou:
+1. "Dle datumu" - lékařské zprávy budou seskupeny dle data vydání zprávy
+2. "Dle kategorie problému" - lékařské zprávy budou seskupeny dle kategorie problému
+3. "Dle lékaře" - lékařské zprávy budou seskupeny dle lékaře, který zprávu vydal
+#### 6.2.2 Kategorie problému
+Možnost "Kategorie problému" umožňuje vypisování pouze těch zpráv, které mají přiřazenou danou kategorii problému. Ve výchozím stavu jsou zaškrtnuté všechny. Seznam je tvořen dynamicky podle kategorií, které jsou použity.
+#### 6.2.3 Lékaři
+Možnost "Lékaři" umožňuje vypisování pouze těch zpráv, které jsou vydány daným lékařem. Ve výchozím stavu jsou zaškrtnuti všichni lékaři. Seznam je tvořen dynamicky podle lékařů, kteří vydali lékařské zprávy.
+
+### 6.3 Přidání lékařské zprávy
+Lékařskou zprávu je možné přidat ze stránky "Lékařské zprávy".
+1. Klikněte na tlačítko "Přidat" v pravém dolním rohu obrazovky.
+2. 
