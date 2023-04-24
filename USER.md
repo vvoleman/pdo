@@ -60,5 +60,7 @@ Aplikace nabízí možnost přidání neomezeného počtu pacientů, vždy je al
     - Datum narození - datum narození pacienta (nepovinné)
 4. Klikněte na tlačítko "Přidat" a pacient bude přidán.
 ### 5.2 Úprava pacienta
-Pro úpravu pacienta rozklikněte nabídku pro více akcí (tři svislé tečky) a vyberte "Upravit". Další postup je totožný jako v [5.1.2](# 5.1.2 Přidání pacienta přes správu pacientů.).
+Pro úpravu pacienta rozklikněte nabídku pro více akcí (tři svislé tečky) a vyberte "Upravit". Další postup je totožný s "5.1.2 Přidání pacienta přes správu pacientů".
+### 5.3 Smazání pacienta
+Pokud se rozhodnete pacienta smazat, můžete tak učit rozkliknutím nabídky pro více akcí (tři svislé tečky) a vybráním "Smazat". Po potvrzení smazání pacienta budou smazány všechny jeho lékařské zprávy, léky a měření. **!! Tato akce je nevratná !!**.
 
