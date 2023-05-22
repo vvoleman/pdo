@@ -1,0 +1,307 @@
+<link rel="stylesheet" href="css/hyper.css"><h1 id="n%C3%A1vod-pro-spr%C3%A1vu-api-serveru-phr-aplikace" tabindex="-1">Návod pro správu API serveru PHR aplikace</h1>
+<p><div class="table-of-contents"><ul><li><a href="#0.-popis-aplikace">0. Popis aplikace</a></li><li><a href="#1.-extern%C3%AD-datov%C3%A9-zdroje">1. Externí datové zdroje</a><ul><li><a href="#1.1-s%C3%BAkl">1.1 SÚKL</a></li><li><a href="#1.2-%C3%BAzis">1.2 ÚZIS</a></li></ul></li><li><a href="#2.-popis-struktury">2. Popis struktury</a><ul><li><a href="#2.1-entity">2.1 Entity</a><ul><li><a href="#2.1.1-addiction">2.1.1 Addiction</a></li><li><a href="#2.1.2-administrationmethod">2.1.2 AdministrationMethod</a></li><li><a href="#2.1.3-country">2.1.3 Country</a></li><li><a href="#2.1.7-medicalproduct">2.1.7 MedicalProduct</a></li></ul></li><li><a href="#2.3-api-endpointy">2.3 API endpointy</a><ul><li><a href="#2.3.1-get-%2Fapi%2Fmedical-products%2Flist">2.3.1 GET /api/medical-products/list</a></li><li><a href="#2.3.2-get-%2Fapi%2Fdiagnoses">2.3.2 GET /api/diagnoses</a></li></ul></li></ul></li><li><a href="#3.-procesy">3. Procesy</a><ul><li><ul><li><a href="#3.2.1-z%C3%ADsk%C3%A1n%C3%AD-dat-ze-server%C5%AF">3.2.1 Získání dat ze serverů</a></li><li><a href="#3.2.2-sta%C5%BEen%C3%AD-dat">3.2.2 Stažení dat</a></li><li><a href="#3.2.3-zpracov%C3%A1n%C3%AD-dat">3.2.3 Zpracování dat</a></li></ul></li></ul></li><li><a href="#4.-nasazen%C3%AD">4. Nasazení</a><ul><li><a href="#4.1-automatick%C3%BD-deployment">4.1 Automatický deployment</a></li><li><a href="#4.2-manu%C3%A1ln%C3%AD-deployment">4.2 Manuální deployment</a></li></ul></li><li><a href="#5.-%C4%8Dast%C3%A9-probl%C3%A9my">5. Časté problémy</a><ul><li><a href="#5.1-chyba-p%C5%99i-spu%C5%A1t%C4%9Bn%C3%AD-migrac%C3%AD">5.1 Chyba při spuštění migrací</a></li><li><a href="#5.2-neaktualizuj%C3%AD-se-extern%C3%AD-datov%C3%A9-zdroje">5.2 Neaktualizují se externí datové zdroje</a></li><li><a href="#5.3-chyba-p%C5%99i-spu%C5%A1t%C4%9Bn%C3%AD-deploymentu">5.3 Chyba při spuštění deploymentu</a></li></ul></li></ul></div></p>
+<h2 id="0.-popis-aplikace" tabindex="-1">0. Popis aplikace</h2>
+<p>API server slouží pro mobilní aplikace PHR jako zdroj dat pro diagnózy a léky. Server je napsán v jazyce PHP 8 a frameworku Symfony. Pro ukládání dat je využívána databáze MySQL</p>
+<h2 id="1.-extern%C3%AD-datov%C3%A9-zdroje" tabindex="-1">1. Externí datové zdroje</h2>
+<h3 id="1.1-s%C3%BAkl" tabindex="-1">1.1 SÚKL</h3>
+<p>Státní ústav pro kontrolu léčiv (SÚKL) poskytuje data o léčivech a jejich interakcích. Data jsou poskytována ve formátu CSV v archivu ZIP. Tento zip obsahuje 10 souborů. Data jsou aktualizována 1x měsíčně</p>
+<h3 id="1.2-%C3%BAzis" tabindex="-1">1.2 ÚZIS</h3>
+<p>Ústav zdravotnických informací a statistiky (ÚZIS) poskytuje data o diagnózách a jejich interakcích. Data jsou poskytována ve formátu CSV v archivu ZIP. Tento zip obsahuje 2 soubory. Data jsou aktualizována 1x ročně</p>
+<h2 id="2.-popis-struktury" tabindex="-1">2. Popis struktury</h2>
+<h3 id="2.1-entity" tabindex="-1">2.1 Entity</h3>
+<h4 id="2.1.1-addiction" tabindex="-1">2.1.1 Addiction</h4>
+<h5 id="atributy" tabindex="-1">Atributy</h5>
+<table>
+<thead>
+<tr>
+<th>Název</th>
+<th>Typ</th>
+<th>Popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>Identifikátor</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Název</td>
+</tr>
+</tbody>
+</table>
+<h5 id="vztahy" tabindex="-1">Vztahy</h5>
+<table>
+<thead>
+<tr>
+<th>Název</th>
+<th>Typ</th>
+<th>Popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>medicalProducts</td>
+<td>manyToMany</td>
+<td>Léky</td>
+</tr>
+<tr>
+<td>diagnoses</td>
+<td>manyToMany</td>
+<td>Diagnózy</td>
+</tr>
+</tbody>
+</table>
+<p>Třída Addiction reprezentuje závislosti mezi léky a diagnózami.</p>
+<h4 id="2.1.2-administrationmethod" tabindex="-1">2.1.2 AdministrationMethod</h4>
+<h5 id="atributy-1" tabindex="-1">Atributy</h5>
+<table>
+<thead>
+<tr>
+<th>Název</th>
+<th>Typ</th>
+<th>Popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>Identifikátor</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Název</td>
+</tr>
+</tbody>
+</table>
+<h5 id="vztahy-1" tabindex="-1">Vztahy</h5>
+<table>
+<thead>
+<tr>
+<th>Název</th>
+<th>Typ</th>
+<th>Popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>medicalProducts</td>
+<td>manyToMany</td>
+<td>Léky</td>
+</tr>
+</tbody>
+</table>
+<p>Třída AdministrationMethod reprezentuje způsoby podání léků. Například orální, nitrožilní, atd.</p>
+<h4 id="2.1.3-country" tabindex="-1">2.1.3 Country</h4>
+<h5 id="atributy-2" tabindex="-1">Atributy</h5>
+<table>
+<thead>
+<tr>
+<th>Název</th>
+<th>Typ</th>
+<th>Popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>Kód země</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Název</td>
+</tr>
+<tr>
+<td>flag</td>
+<td>string</td>
+<td>URL adresa vlajky</td>
+</tr>
+</tbody>
+</table>
+<h5 id="vztahy-2" tabindex="-1">Vztahy</h5>
+<table>
+<thead>
+<tr>
+<th>Název</th>
+<th>Typ</th>
+<th>Popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>medicalProducts</td>
+<td>manyToMany</td>
+<td>Léky</td>
+</tr>
+</tbody>
+</table>
+<p>Třída Country reprezentuje státy, ve kterých jsou léky registrovány. Například Česká republika, Slovenská republika, atd.</p>
+<h4 id="2.1.7-medicalproduct" tabindex="-1">2.1.7 MedicalProduct</h4>
+<h5 id="atributy-3" tabindex="-1">Atributy</h5>
+<table>
+<thead>
+<tr>
+<th>Název</th>
+<th>Typ</th>
+<th>Popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>Identifikátor</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Název</td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>Kód</td>
+</tr>
+<tr>
+<td>originCountry</td>
+<td>Country</td>
+<td>Země původu</td>
+</tr>
+<tr>
+<td>size</td>
+<td>string</td>
+<td>Velikost balení</td>
+</tr>
+<tr>
+<td>registrationStatus</td>
+<td>RegistrationStatus</td>
+<td>Stav registrace</td>
+</tr>
+<tr>
+<td>productForm</td>
+<td>ProductForm</td>
+<td>Forma léku</td>
+</tr>
+<tr>
+<td>administrationMethod</td>
+<td>AdministrationMethod</td>
+<td>Způsob podání</td>
+</tr>
+</tbody>
+</table>
+<h5 id="vztahy-3" tabindex="-1">Vztahy</h5>
+<table>
+<thead>
+<tr>
+<th>Název</th>
+<th>Typ</th>
+<th>Popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>substances</td>
+<td>manyToMany</td>
+<td>Účinné látky</td>
+</tr>
+<tr>
+<td>addiction</td>
+<td>manyToMany</td>
+<td>Závislosti</td>
+</tr>
+<tr>
+<td>documents</td>
+<td>manyToMany</td>
+<td>Dokumenty</td>
+</tr>
+<tr>
+<td>interactions</td>
+<td>manyToMany</td>
+<td>Interakce</td>
+</tr>
+</tbody>
+</table>
+<p>Třída MedicalProduct reprezentuje léky. Obsahuje název, účinnou látku, atd.</p>
+<h3 id="2.3-api-endpointy" tabindex="-1">2.3 API endpointy</h3>
+<h4 id="2.3.1-get-%2Fapi%2Fmedical-products%2Flist" tabindex="-1">2.3.1 GET /api/medical-products/list</h4>
+<h5 id="parametry" tabindex="-1">Parametry</h5>
+<table>
+<thead>
+<tr>
+<th>Název</th>
+<th>Typ</th>
+<th>Popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>search</td>
+<td>string</td>
+<td>Vyhledávání podle názvu nebo kódu</td>
+</tr>
+<tr>
+<td>page</td>
+<td>integer</td>
+<td>Stránkování</td>
+</tr>
+</tbody>
+</table>
+<p>Vrátí všechny léky. Lze použít parametr <code>search</code> pro vyhledání léků podle názvu nebo kódu. Dále lze použít parametr <code>page</code> pro stránkování.</p>
+<h4 id="2.3.2-get-%2Fapi%2Fdiagnoses" tabindex="-1">2.3.2 GET /api/diagnoses</h4>
+<h5 id="parametry-1" tabindex="-1">Parametry</h5>
+<table>
+<thead>
+<tr>
+<th>Název</th>
+<th>Typ</th>
+<th>Popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>search</td>
+<td>string</td>
+<td>Vyhledávání podle názvu nebo kódu</td>
+</tr>
+<tr>
+<td>page</td>
+<td>integer</td>
+<td>Stránkování</td>
+</tr>
+</tbody>
+</table>
+<p>Vrátí všechny diagnózy. Lze použít parametr <code>search</code> pro vyhledání diagnóz podle názvu nebo kódu. Dále lze použít parametr <code>page</code> pro stránkování.</p>
+<h2 id="3.-procesy" tabindex="-1">3. Procesy</h2>
+<h4 id="3.2.1-z%C3%ADsk%C3%A1n%C3%AD-dat-ze-server%C5%AF" tabindex="-1">3.2.1 Získání dat ze serverů</h4>
+<p>Oba zdroje nabízejí zdroje z jejich webových stránek přes odkaz. Pro získání tohoto odkazu je potřeba použít web scraping.</p>
+<pre><code class="language-warning">Struktura webové stránky se může kdykoliv změnit. Synchronizace při jiné struktuře zapíše problém do logu a zastaví se.
+</code></pre>
+<h4 id="3.2.2-sta%C5%BEen%C3%AD-dat" tabindex="-1">3.2.2 Stažení dat</h4>
+<p>Data jsou stažena pomocí knihovny Guzzle. Data jsou rozbalena a uložena do složky <code>data/temp</code>. Je možné nastavit, aby se archiv nemazal a zůstal uložen pro případný rollback.</p>
+<h4 id="3.2.3-zpracov%C3%A1n%C3%AD-dat" tabindex="-1">3.2.3 Zpracování dat</h4>
+<p>Aplikace používá tzv. Syncery. Ty se starají o synchronizaci konkrétní oblastni s databází. Mezi syncery existují závislosti.</p>
+<h2 id="4.-nasazen%C3%AD" tabindex="-1">4. Nasazení</h2>
+<p>Deployment je rozdělen do několika kroků:</p>
+<ol>
+<li>Stáhnutí poslední verze kódu z Githubu</li>
+<li>Případné spuštění Docker kontejneru s API serverem</li>
+<li>Update knihoven pomocí Composeru</li>
+<li>Spuštění migrací</li>
+</ol>
+<h3 id="4.1-automatick%C3%BD-deployment" tabindex="-1">4.1 Automatický deployment</h3>
+<p>Na Githubu projektu je nastavený Github Actions workflow, který se spustí při každém pushnutí do větve <code>main</code>. Workflow se stará o automatický deployment na server.</p>
+<h3 id="4.2-manu%C3%A1ln%C3%AD-deployment" tabindex="-1">4.2 Manuální deployment</h3>
+<p>Pro manuální deployment je potřeba spustit příkaz <code>php deploy.php</code> v kořenové složce projektu. Deployment je možné spustit s parametrem <code>--rollback</code>, který způsobí, že se neprovede aktualizace kódu, ale pouze se vrátí databáze do předchozího stavu.</p>
+<h2 id="5.-%C4%8Dast%C3%A9-probl%C3%A9my" tabindex="-1">5. Časté problémy</h2>
+<h3 id="5.1-chyba-p%C5%99i-spu%C5%A1t%C4%9Bn%C3%AD-migrac%C3%AD" tabindex="-1">5.1 Chyba při spuštění migrací</h3>
+<p>Příčinou této chyby může být chyba v kódu migrace nebo chyba v kódu entity. V obou případech je potřeba opravit chybu a spustit migrace znovu.</p>
+<h3 id="5.2-neaktualizuj%C3%AD-se-extern%C3%AD-datov%C3%A9-zdroje" tabindex="-1">5.2 Neaktualizují se externí datové zdroje</h3>
+<p>Toto může způsobovat jak chybné internetové připojení, oprávnění uložiště nebo výpadek externího datového zdroje. Všechny tyto případy je potřeba řešit individuálně. Pro více informací je možné se podívat do logů.</p>
+<h3 id="5.3-chyba-p%C5%99i-spu%C5%A1t%C4%9Bn%C3%AD-deploymentu" tabindex="-1">5.3 Chyba při spuštění deploymentu</h3>
+<p>Pokud se vyskytne chyba při spuštění deploymentu, je potřeba se podívat do logů. Většinou se jedná o chybu v kódu, která je potřeba opravit. V případě, že se jedná o chybu v kódu migrace nebo entity, je potřeba provést rollback a opravit chybu.</p>
